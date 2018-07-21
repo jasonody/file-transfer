@@ -1,0 +1,23 @@
+{
+  "name": "file-transfer",
+  "version": "0.1.0",
+  "description": "Simple file transfer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonody/file-transfer.git"
+  },
+  "author": "Jason Ody",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonody/file-transfer/issues"
+  },
+  "homepage": "https://github.com/jasonody/file-transfer#readme",
+  "dependencies": {
+    "commander": "^2.16.0"
+  }
+}

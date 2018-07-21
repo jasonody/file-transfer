@@ -1,8 +1,13 @@
 const net = require('net')
 const fs = require('fs')
+const program = require('commander')
 
-const PORT = 36963
+program
+    .version('0.1.0')
+    .option('-P, --port [value]', 'Port to run server on', 36963)
+    .parse(process.argv)
 
+const PORT = program.port
 
 const server = net.createServer(socket => {
     const initializeTransfer = (name) => {
@@ -31,4 +36,6 @@ const server = net.createServer(socket => {
         writeStream.end()
         console.log('\nClient has disconnected.')
     })
-}).listen(PORT)
+}).listen(PORT, () => {
+    console.log(`Server listening on port:${PORT}`)
+})

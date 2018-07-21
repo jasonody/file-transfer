@@ -1,16 +1,26 @@
 const net = require('net')
 const fs = require('fs')
+const program = require('commander')
 
-const filename = process.argv[2] || 'test.pdf'
+program
+    .version('0.1.0')
+    .option('-H --host <value>', 'Host IP address')
+    .option('-P --port <value>', 'Host port', 36963)
+    .option('-F --file <value>', 'File to be transfered')
+    .parse(process.argv)
+
+const PORT = program.port;
+const HOST = program.host;
+const FILENAME = program.file;
 
 const client = new net.Socket()
-client.connect(36963, '127.0.0.1', () => {
+client.connect(PORT, HOST, () => {
     console.log('Client has connected to server...')
 
-    client.write(filename)
-    process.stdout.write(`Client is sending${filename}`)
+    client.write(FILENAME)
+    process.stdout.write(`Client is sending${FILENAME}`)
 
-    fs.createReadStream(filename)
+    fs.createReadStream(FILENAME)
         .on('data', data => {
             process.stdout.write('.')
             client.write(data)
